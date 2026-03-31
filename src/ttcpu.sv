@@ -11,14 +11,14 @@ module ttcpu (
     output logic memwen,
 
     input logic [7:0] romdin,
-    output logic [6:0] romaddr
+    output logic [5:0] romaddr
 );
 
 logic [7:0] instruction;
 logic flagctocp;
 logic flagztocp;
 logic flagctoalu;
-logic [2:0] address_extension;
+logic [1:0] address_extension;
 logic [3:0] Ratocp;
 
 datapath main_datapath (

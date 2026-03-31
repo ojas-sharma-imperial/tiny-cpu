@@ -39,6 +39,8 @@ module tt_um_ojas_sharma_imperial_ttcpu (
     .romaddr (uo_out[7:2])
   );
 
+  assign uio_out[3:0] = 4'b0;
+
   // List all unused inputs to prevent warnings
   wire _unused = &{uio_out[3:0], uio_in[7:4], ena, 1'b0};
 
