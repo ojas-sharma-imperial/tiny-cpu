@@ -40,9 +40,12 @@ assign jumpopc = instruction[2:1];
 // use boolean algebra to get some control signals
 
 always_comb begin
-    wen1 = 1'b0; // TEMPORARY, SHOULDN'T NEED THIS ONCE ALL INSTRUCTIONS DEFINED
+    wen1 = 1'b0; // reset all control signals before computing their values, for verilator :)
     memldr = 1'b0;
     memstr = 1'b0;
+    op2sel = 1'b0;
+    shiften = 1'b0;
+    jumpen = 1'b0;
     
     if ((~sectionopc[1]) | ((sectionopc[1]) & (~sectionopc[0]))) begin // alu or extend instruction
         if ((aluopc != 3'b111) | ((~sectionopc[1]) & (aluopc == 3'b111))) begin // alu selected

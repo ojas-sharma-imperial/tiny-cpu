@@ -15,10 +15,14 @@ module cond (
     output logic saveadress
 );
 
-logic [6:0] offset;
-logic [6:0] extended_reg;
+logic [5:0] offset;
+logic [5:0] extended_reg;
 
 always_comb begin
+    saveadress = 1'b0;
+    jump = 1'b0;
+    destination = 6'b000000;
+
     case (immc2) // correct for immc2 weirdness
         2'b00: offset = 6'b000010; // +2
         2'b01: offset = 6'b000011; // +3

@@ -91,6 +91,7 @@ module shift_n #(parameter int SHIFT_COUNT = 1) ( // parameterised barrel shifte
 logic [3:0] temp;
 
 always_comb begin
+    temp = 4'b0000;
     if (en) begin // shift by SHIFT_COUNT
         case (shiftopc)
             2'b00: begin // LSL
@@ -173,6 +174,8 @@ logic [3:0] shiftdout;
 logic shiftcout;
 
 always_comb begin
+    shift1toshift2data = 4'b0000;
+    shiftdout = 4'b0000;
     if (op2sel) begin // field 2 immediate value
         secondinput = imms4;
     end else begin // field 2 register Rb

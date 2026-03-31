@@ -20,6 +20,10 @@ assign jumpinv = instruction[3];
 assign jumpopc = instruction[2:1];
 
 always_comb begin
+    jumpen = 1'b0;
+    flagzwen = 1'b0;
+    flagcwen = 1'b0;
+    
     if ((~sectionopc[1]) | ((sectionopc[1]) & (~sectionopc[0]))) begin // alu or extend instruction
         jumpen = 1'b0;
         if ((aluopc != 3'b111) | ((~sectionopc[1]) & (aluopc == 3'b111))) begin // alu selected
