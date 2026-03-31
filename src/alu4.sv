@@ -132,7 +132,7 @@ module addsub (
     input carryin,
     input invert,
     output logic [3:0] dout,
-    output logic carryout,
+    output logic carryout
 );
 
 logic [3:0] secondinput;
@@ -175,7 +175,6 @@ logic [3:0] shiftdout;
 logic shiftcout;
 
 always_comb begin
-    shiftdout = 4'b0000;
     if (op2sel) begin // field 2 immediate value
         secondinput = imms4;
     end else begin // field 2 register Rb
