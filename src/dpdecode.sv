@@ -19,7 +19,7 @@ module dpdecode (
     output logic op2sel,
     output logic jumpen,
     output logic memldr,
-    output logic memstr,
+    output logic memstr
 );
 
 // collect the relevant parts of the instruction

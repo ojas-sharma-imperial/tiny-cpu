@@ -54,6 +54,7 @@ module shift (
 );
 
 logic [3:0] shift1toshift2data;
+assign shift1toshift2data = 4'b0000;
 logic shift1toshift2out;
 
 shift_n #(.SHIFT_COUNT(1)) shift_1 (
@@ -161,7 +162,7 @@ module alu4 (
     input op2sel,
     input flagcin,
     output logic [3:0] out,
-    output logic flagc,
+    output logic flagc
 );
 
 // define some internal wires here
@@ -174,7 +175,6 @@ logic [3:0] shiftdout;
 logic shiftcout;
 
 always_comb begin
-    shift1toshift2data = 4'b0000;
     shiftdout = 4'b0000;
     if (op2sel) begin // field 2 immediate value
         secondinput = imms4;
