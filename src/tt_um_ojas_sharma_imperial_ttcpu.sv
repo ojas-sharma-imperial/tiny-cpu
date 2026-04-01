@@ -19,29 +19,37 @@ module tt_um_ojas_sharma_imperial_ttcpu (
 
   wire reset;
   wire [4:0] memaddr;
-  wire [3:0] memdout;
-
-  assign reset = ~rst_n;
-  assign uio_oe = 8'b11110000;
-  assign uo_out[0] = memaddr[4];
-  assign uio_out[7:4] = memaddr[3:0];
 
   ttcpu main_cpu (
     .clk (clk),
     .reset (reset),
 
-    .memdin (uio_in[3:0]),
-    .memaddr (memaddr),
-    .memdout (memdout),
-    .memwen (uo_out[1]),
+    .memdin (uio_in[3:0]), // INPUT: data from RAM
+    .memaddr (memaddr), // OUTPUT: address to ROM
+    .memdout (uio_out[3:0]), // OUTPUT: data to RAM
+    .memwen (uo_out[7]), // OUTPUT: RAM write-enable
 
-    .romdin (ui_in),
-    .romaddr (uo_out[7:2])
+    .romdin (ui_in), // INPUT: data from ROM
+    .romaddr (uo_out[5:0]) // OUTPUT: address to ROM
   );
 
-  assign uio_out[3:0] = 4'b0;
+  // dynamically update the values of input pins to match the ttcpu expectation
+
+  assign reset = ~rst_n;
+
+  assign uio_oe[7:4] = 4'b1111;
+  assign uio_oe[3:0] = {4{uo_out[7]}};
+
+  // split up the RAM address output to correct pinout
+
+  assign memaddr[4] = uo_out[6];
+  assign memaddr[3:0] = uio_out[7:4];
+
+  // set unused pins to respective constant values
+
+  //assign uio_in[7:4] = 4'b0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{uio_out[3:0], uio_in[7:4], ena, 1'b0};
+  wire _unused = &{uio_in[7:4], ena, 1'b0};
 
 endmodule
