@@ -39,11 +39,7 @@ Note that, since RAM addresses are 5-bit and ROM addresses are 6-bit, there are 
 
 ## Instruction Set Architecture
 
-The ISA is defined in the image below:
-
-![](isa.png)
-
-> **Key:** `X` = don't care (ideally set to zero), `#IMM` = immediate value, `Ra`/`Rb` = register select
+The full, machine-code-level ISA is defined in the [machine code ISA](isa.png) however the sections below explain exact functionality of instructions at an assembly-programmer level of abstraction.
 
 ### Immediate Values
 
@@ -66,7 +62,7 @@ This section outlines the syntax and detailed function of each ttcpu instruction
 | `SUB` | `A := A - #IMMS4`; `Ra := Ra - Rb` | `A` for immediate; `Ra` | `Z`, `C` |
 | `ADC` | `A := A - #IMMS4`; `Ra := Ra - Rb + FlagC` | `A` for immediate; `Ra` | `Z`, `C` |
 | `SBC` | `A := A - #IMMS4`; `Ra := Ra - Rb + (FlagC - 1)` | `A` for immediate; `Ra` | `Z`, `C` |
-| `NAND` | `A := A - #IMMS4`; `Ra := ~(Ra && Rb)` | `A` for immediate; `Ra` | `Z` |
+| `NAND` | `A := ~(A && #IMMS4)`; `Ra := ~(Ra && Rb)` | `A` for immediate; `Ra` | `Z` |
 | `CMP` | `A := A - #IMMS4`; `Ra - Rb` | \- | `Z`, `C` |
 | `LSL` | `A := A << #SHIFTCNT`; 0 loaded in | `A` | `Z`, `C` |
 | `LSR` | `A := A >> #SHIFTCNT`; 0 loaded in | `A` | `Z`, `C` |
@@ -75,10 +71,10 @@ This section outlines the syntax and detailed function of each ttcpu instruction
 | `LDR` | `Ra := RAM[#IMM2]`; `Ra := RAM[Rb]` | `Ra` | `Z` |
 | `STR` | `RAM[#IMM2] := Ra`; `RAM[Ra] := Rb` | \- | \- |
 | `JMP` | `PC := PC + #IMMC2` | `PC` | \- |
-| `JEQ` | `PC := PC + #IMMC2`; if `FlagZ = 1` | `PC` | \- |
-| `JNE` | `PC := PC + #IMMC2`; if `FlagZ = 0` | `PC` | \- |
-| `JCS` | `PC := PC + #IMMC2`; if `FlagC = 1` | `PC` | \- |
-| `JCC` | `PC := PC + #IMMC2`; if `FlagC = 1` | `PC` | \- |
+| `JEQ` | `PC := PC + #IMMC2` if `FlagZ = 1` | `PC` | \- |
+| `JNE` | `PC := PC + #IMMC2` if `FlagZ = 0` | `PC` | \- |
+| `JCS` | `PC := PC + #IMMC2` if `FlagC = 1` | `PC` | \- |
+| `JCC` | `PC := PC + #IMMC2` if `FlagC = 0` | `PC` | \- |
 | `JSR` | `PCX := PC + 1`; `PC := PC + Ra` | `PC`, `PCX` | \- |
 | `RET` | `PC := PCX` | `PC` | \- |
 | `EXT1` | `X[0] := #IMM1` | `X` | \- |
@@ -86,3 +82,5 @@ This section outlines the syntax and detailed function of each ttcpu instruction
 | `NOP` | \- | \- | \- |
 
 ## Assembling ttcpu Programs
+
+Programs for the ttcpu should be written in plaintext, and stored in a `.txt` file. The included assembler program can be used to produce a machine-code `.ram` file that can be inspected, as well as a `.mem` file that can be loaded into the `test_mem_interface.sv` file to simulate programs easily using Verilator.
