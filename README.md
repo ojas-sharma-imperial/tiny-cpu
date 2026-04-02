@@ -8,13 +8,13 @@ The chip is designed around an 8-bit instruction word and a custom-defined ISA, 
 
 ## Functional Overview
 
-The ttcpu contains many commonly-found instructions on RISC microprocessors, though some limited due to size constraints on the instruction word. The ttcpu can address 64 8-bit-word instructions, and 32 4-bit-word RAM locations, this being possible largely due to the use of the Harvard model of CPU.
+The ttcpu contains many commonly-found instructions on RISC microprocessors, though some limited due to size constraints on the instruction word. The ttcpu can address 64 8-bit-word instructions, and 32 4-bit-word RAM locations, this being possible largely due to the use of the Harvard-architecture of CPU.
 
 There are largely 4 categories of instruction present on the ttcpu:
 
-- ALU Instructions (ie. MOV, ADD, SUB, SHIFT)
-- Memory Instructions (ie. LDR, STR)
-- Jump Instructions (ie. JMP, JEQ, JSR)
+- ALU Instructions (ie. `MOV`, `ADD`, `SUB`, `SHIFT`)
+- Memory Instructions (ie. `LDR`, `STR`)
+- Jump Instructions (ie. `JMP`, `JEQ`, `JSR`)
 - Extend Instructions (allowing computed addressing of greater than 4-bits)
 
 The exact use of these instructions, along with assembly instructions for the ISA are defined in the [ISA documentation](docs/isa.md).
@@ -26,4 +26,4 @@ Due to the limited IO ports available on a 1x1 Tiny Tapeout tile, the distributi
 The ttcpu expects a:
 
 - 64 8-bit-word instruction ROM
-- 32 4-bit-word data RAM, where the RAM.din and RAM.dout lines are the same (bidirectional lines due to limited pins available on the Tiny Tapeout tile) and the direction of the data lines is controlled by a RAM.wen output pin.
+- 32 4-bit-word data RAM, where the `RAM.din` and `RAM.dout` lines are the same (bidirectional lines due to limited pins available on the Tiny Tapeout tile) and the direction of the data lines is controlled by a `RAM.wen` output pin.
