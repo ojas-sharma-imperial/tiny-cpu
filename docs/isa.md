@@ -60,7 +60,7 @@ There are five types of immediate value that can be inputted into various instru
 This section outlines the syntax and detailed function of each ttcpu instruction from the perspective of an assembly-language programmer, simplifying some of the machine-code-level nuances.
 
 | Instruction Opcode | Operation | Writes to Register? | Writes to Flags? |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | `MOV` | `A := #IMMS4`; `Ra := Rb` | `A` for immediate; `Ra` | `Z` |
 | `ADD` | `A := A + #IMMS4`; `Ra := Ra + Rb` | `A` for immediate; `Ra` | `Z`, `C` |
 | `SUB` | `A := A - #IMMS4`; `Ra := Ra - Rb` | `A` for immediate; `Ra` | `Z`, `C` |
