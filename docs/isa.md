@@ -66,8 +66,8 @@ This section outlines the syntax and detailed function of each ttcpu instruction
 | `CMP` | `A := A - #IMMS4`; `Ra - Rb` | \- | `Z`, `C` |
 | `LSL` | `A := A << #SHIFTCNT`; 0 loaded in | `A` | `Z`, `C` |
 | `LSR` | `A := A >> #SHIFTCNT`; 0 loaded in | `A` | `Z`, `C` |
-| `ASR` | `A := A << #SHIFTCNT`; sign-bit loaded in | `A` | `Z`, `C` |
-| `XSR` | `A := A << #SHIFTCNT`; `FlagC` loaded in | `A` | `Z`, `C` |
+| `ASR` | `A := A >> #SHIFTCNT`; sign-bit loaded in | `A` | `Z`, `C` |
+| `XSR` | `A := A >> #SHIFTCNT`; `FlagC` loaded in | `A` | `Z`, `C` |
 | `LDR` | `Ra := RAM[#IMM2]`; `Ra := RAM[Rb]` | `Ra` | `Z` |
 | `STR` | `RAM[#IMM2] := Ra`; `RAM[Ra] := Rb` | \- | \- |
 | `JMP` | `PC := PC + #IMMC2` | `PC` | \- |
