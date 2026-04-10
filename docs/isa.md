@@ -1,6 +1,6 @@
 # ttcpu ISA
 
-This file outlines the exact (custom) instruction set architecture defined for the ttcpu, as well as how to assemble code for the ttcpu. For more details on the programmer-level syntax of the ttcpu assembly language, refer to the [programming guide](docs/programming-guide.md).
+This file outlines the exact (custom) instruction set architecture defined for the ttcpu, as well as how to assemble code for the ttcpu. For more details on the programmer-level syntax of the ttcpu assembly language, refer to the [programming guide](programming-guide.md).
 
 ## Design Philosophy
 
